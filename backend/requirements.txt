@@ -1,0 +1,8 @@
+flask
+flask-restful
+scikit-learn
+transformers
+pandas
+nltk
+joblib
+flask-cors
