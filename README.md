@@ -1,84 +1,119 @@
 # NLP Ticket Classifier
 
-## Overview
+A full-stack machine learning web application that classifies customer support tickets into categories like IT Support, Hardware, Finance, DevOps, etc., using a simple Logistic Regression model and TF-IDF vectorization.
 
-A full-stack machine learning web app that classifies customer support tickets using BERT and scikit-learn.
-It includes real-time prediction, admin management of tags, and historical data logging. Built with React (frontend) and Flask (backend).
+This project includes a Flask backend serving the classifier model and a React + Tailwind CSS frontend for a modern, interactive UI.
+
+---
+
+##  Tech Stack
+
+**Frontend:**
+- React (via Create React App)
+- Tailwind CSS
+- Axios for API requests
+
+**Backend:**
+- Python + Flask
+- Scikit-learn for ML pipeline
+- CountVectorizer + LogisticRegression (can upgrade to BERT later)
+- Flask-CORS for API access
+
+**Others:**
+- Joblib (for model persistence)
+- Local SQLite (optional for logging)
+- Dummy model generated on startup
 
 ---
 
 ## Features
 
-- BERT-powered NLP classification of tickets
-- Real-time API with Flask
-- Admin dashboard to view tagged tickets
-- Searchable ticket history
-- Preprocessing pipeline with scikit-learn
-- Clean, modern UI using React + Tailwind CSS
-
----
-
-## Tech Stack
-
-- **Frontend:** React, Tailwind CSS
-- **Backend:** Flask, Flask-RESTful, scikit-learn, transformers
-- **ML/NLP:** BERT via HuggingFace Transformers
-- **Database:** SQLite (can switch to PostgreSQL)
-- **API Client:** Axios
-
----
-
-## Setup Instructions
-
-### 🔧 Backend Setup
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
-python app.py
-```
-
-### 💻 Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm start
-```
+- Real-time ticket classification form
+- Predicts category based on text input
+- Fast, responsive UI
+- Flask REST API
+- Modular backend structure for future scaling
+- Environment variable config
+- Easily swappable ML model
 
 ---
 
 ## Folder Structure
 
-```
-nlp_ticket_classifier/
+nlp-ticket-classifier/
 ├── backend/
-│   ├── app/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── utils/
-│   ├── config/
-│   └── app.py
+│ ├── app/
+│ │ ├── models/
+│ │ ├── routes/
+│ │ ├── utils/
+│ ├── config/
+│ ├── create_dummy_model.py
+│ ├── app.py
+│ └── requirements.txt
 ├── frontend/
-│   ├── src/components/
-│   ├── src/pages/
-│   └── public/assets/
-└── assets/screenshots/
-```
+│ ├── src/
+│ │ ├── pages/
+│ │ ├── components/
+│ │ ├── App.jsx
+│ │ └── index.js
+│ ├── public/
+│ ├── tailwind.config.js
+│ ├── postcss.config.js
+│ ├── .env.example
+│ └── package.json
+└── README.md
+
+yaml
+Copy
+Edit
 
 ---
 
-## Environment Variables
+##  Getting Started
 
-Copy `.env.example` into `.env` for both frontend and backend and fill in the values.
+### 1. Backend Setup (Flask)
 
----
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate  # or source venv/bin/activate
+pip install -r requirements.txt
+python create_dummy_model.py
+python app.py
+Flask API runs on: http://localhost:5000
 
-## Future Improvements
+2. Frontend Setup (React)
+bash
+Copy
+Edit
+cd frontend
+npm install
+npm run start
+React app runs on: http://localhost:3000
 
-- Add user auth (JWT)
-- Deploy BERT model with ONNX or FastAPI
-- Role-based ticket review system
-- Notification for misclassified tickets
+ API Endpoint
+Method	Endpoint	Description
+POST	/api/tickets/classify	Classifies the given ticket text
+
+Request:
+json
+Copy
+Edit
+{ "text": "reset my email password" }
+Response:
+json
+Copy
+Edit
+{ "category": "IT Support" }
+ Future Improvements
+Replace Logistic Regression with BERT via HuggingFace
+
+Add user authentication and admin roles
+
+Store classified tickets in SQLite or PostgreSQL
+
+Upload batch tickets from CSV
+
+Create analytics dashboard for support center
+ License
+MIT License — free to use, fork, and build upon.
